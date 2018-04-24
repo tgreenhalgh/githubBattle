@@ -13,24 +13,24 @@ class Popular extends React.Component {
 
   updateLanguage(lang) {
     // `this` is the component instance itself which has a
-    // setState property
-    this.setState(lang => {
-      selectedLanguage: lang;
-    });
+    this.setState(() => ({ selectedLanguage: lang }));
   }
 
   render() {
     let languages = ['All', 'JavaScript', 'Ruby', 'Java', 'Go', 'Python'];
     return (
       <ul className="languages">
+        <p>Selected language: {this.state.selectedLanguage}</p>
         {languages.map(
           lang => (
             // NOTE: in a new function, so `this` is undefined
-            <li onClick={this.updateLanguage} key={lang}>
+            // bind - alreadt set context, so null, then lang as first param
+            // bind passes the function, when onClick happens, it is invoked
+            <li onClick={this.updateLanguage.bind(null, lang)} key={lang}>
               {lang}
             </li>
           ),
-          this, // second arg for map - passes the context
+          this, // second arg for map - passes the context into map
         )}
       </ul>
     );
