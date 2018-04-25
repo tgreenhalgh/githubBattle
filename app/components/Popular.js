@@ -21,12 +21,12 @@ class Popular extends React.Component {
     return (
       <ul className="languages">
         {languages.map(lang => (
-          // bind - alreadt set context, so null, then lang as first param
-          // bind passes the function, when onClick happens, it is invoked
           <li
             style={
               lang === this.state.selectedLanguage ? { color: '#d0021b' } : null
             }
+            // bind - already set context, so null, then lang as first param
+            // bind passes the function, when onClick happens, it is invoked
             onClick={this.updateLanguage.bind(null, lang)}
             key={lang}
           >
