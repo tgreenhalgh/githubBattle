@@ -31,7 +31,7 @@ function handleError(err) {
 function getUserData(player) {
   return axios.all([getProfile(player), getRepos(player)]).then(data => {
     let profile = data[0];
-    let repost = data[1];
+    let repos = data[1];
 
     return {
       profile,
