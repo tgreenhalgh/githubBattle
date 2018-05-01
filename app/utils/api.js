@@ -13,18 +13,20 @@ function getRepos(username) {
 }
 
 function getStarCount(repos) {
-  return repos.data.reduce((count, repo) => count + repos.stargazers_count, 0);
+  return repos.data.reduce(function(count, repo) {
+    return count + repo.stargazers_count;
+  }, 0);
 }
 
 function calculateScore(profile, repos) {
-  let follower = profile.followers;
+  let followers = profile.followers;
   let totalStars = getStarCount(repos);
 
   return followers * 3 + totalStars;
 }
 
-function handleError(err) {
-  console.warn(err);
+function handleError(error) {
+  console.warn(error);
   return null;
 }
 
@@ -48,12 +50,10 @@ function sortPlayers(players) {
 
 module.exports = {
   battle: players =>
-    axios.all(
-      players
-        .map(getUserData)
-        .then(sortPlayers)
-        .catch(handleError),
-    ),
+    axios
+      .all(players.map(getUserData))
+      .then(sortPlayers)
+      .catch(handleError),
   fetchPopularRepos: language => {
     let encodedURI = window.encodeURI(
       'https://api.github.com/search/repositories?q=stars:>1+language:' +
