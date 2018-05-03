@@ -12,8 +12,29 @@ class Loading extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: props.loading,
+      text: props.text,
     };
+  }
+  componentDidMount() {
+    const stopper = this.props.text + '...';
+    this.interval = window.setInterval(
+      function() {
+        if (this.state.text === stopper) {
+          this.setState(function() {
+            return {
+              text: this.props.text,
+            };
+          });
+        } else {
+          this.setState(function(prevState) {
+            return {
+              text: prevState.text + '.',
+            };
+          });
+        }
+      }.bind(this),
+      200,
+    );
   }
   render() {
     return <p style={styles.content}>{this.state.text}</p>;
