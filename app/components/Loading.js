@@ -33,7 +33,7 @@ class Loading extends React.Component {
           });
         }
       }.bind(this),
-      200,
+      this.props.speed,
     );
   }
   render() {
@@ -43,10 +43,12 @@ class Loading extends React.Component {
 
 Loading.propTypes = {
   text: PropTypes.string.isRequired,
+  speed: PropTypes.number.isRequired,
 };
 
 Loading.defaultProps = {
   text: 'Loading',
+  speed: 200,
 };
 
 module.exports = Loading;
