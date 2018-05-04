@@ -35,12 +35,12 @@ function handleError(error) {
 }
 
 function getUserData(player) {
-  return Promise.all([getProfile(player), getRepos(player)]).then(
-    ([profile, repos]) => ({
+  return axios
+    .all([getProfile(player), getRepos(player)])
+    .then(([profile, repos]) => ({
       profile,
       score: calculateScore(profile, repos),
-    }),
-  );
+    }));
 }
 
 function sortPlayers(players) {
