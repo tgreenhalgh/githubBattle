@@ -10,12 +10,16 @@
     "firebase-init": "firebase login && firebase init"
   },
   "babel": {
-    "presets": ["env", "react"]
+    "presets": [
+      "env",
+      "react"
+    ]
   },
   "author": "thomas greenhalgh",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "firebase-tools": "^3.18.4",
     "prop-types": "^15.6.1",
     "query-string": "^6.0.0",
