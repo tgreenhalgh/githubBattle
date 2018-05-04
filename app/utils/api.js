@@ -48,13 +48,13 @@ function sortPlayers(players) {
 }
 
 module.exports = {
-  battle: players =>
-    axios
-      .all(players.map(getUserData))
+  battle(players) {
+    return Promise.all(players.map(getUserData))
       .then(sortPlayers)
-      .catch(handleError),
-  fetchPopularRepos: language => {
-    let encodedURI = window.encodeURI(
+      .catch(handleError);
+  },
+  fetchPopularRepos(language) {
+    const encodedURI = window.encodeURI(
       `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`,
     );
 
